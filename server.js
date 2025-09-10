@@ -1,12 +1,14 @@
 // Budget API
-
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const app = express();
 const port = 3000;
 
 app.use('/', express.static('public'));
 
-const budget = {
+const budget = JSON.parse(fs.readFileSync(path.join(__dirname,'budget.json'), 'utf8'));
+/*const budget = {
     myBudget: [
     {
         title: 'Eat out',
@@ -25,7 +27,7 @@ const budget = {
         budget: 60
     },
     ]
-};
+};*/
 
 app.get('/hello', (req, res) => {
     res.send('Hello World!');
